@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_compras_monopark_compras_monopark,compras_monopark.compras_monopark,model_compras_monopark_compras_monopark,,1,0,0,0
