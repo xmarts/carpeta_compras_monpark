@@ -32,5 +32,30 @@
         </xpath>
       </field>
     </record>
+    <record id="purchase_order_tree_alter" model="ir.ui.view">
+      <field name="name">purchase.order.tree.alter</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree[1]" position="replace">
+          <tree decoration-bf="message_unread==True" decoration-muted="state=='cancel'" decoration-info="state in ('wait','confirmed')" string="Purchase Order">
+              <field name="message_unread" invisible="1"/>
+              <field name="name" string="Reference"/>
+              <field name="date_order" />
+              <field name="compra_tipo"/>
+              <field name="partner_id"/>
+              <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+              <field name="date_planned" invisible="context.get('quotation_only', False)"/>
+              <field name="user_id"/>
+              <field name="origin"/>
+              <field name="amount_untaxed" sum="Total Untaxed amount" string="Untaxed" widget="monetary"/>
+              <field name="amount_total" sum="Total amount" widget="monetary"/>
+              <field name="currency_id" invisible="1"/>
+              <field name="state"/>
+              <field name="invoice_status" invisible="1"/>
+          </tree>
+        </xpath>
+      </field>
+    </record>
   </data>
 </odoo>
