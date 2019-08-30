@@ -9,6 +9,10 @@
         <xpath expr="//field[@name='date_order']" position="after">
           <field name="compra_tipo"/>
         </xpath>
+        <!--  AGREGAMOS LA COLUMNA DE IMAGEN A LA TABLA DE  COMPRAS  -->
+        <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='product_id']" position="before">
+          <field name="imagen_producto" options="{&quot;size&quot;: [70, 70]}" widget="image" string="Imagen"/>
+        </xpath>
         <!--  ELIMINAMOS LA ETIQUETA DESCRIPCION DE LA TABLA DEL FORMULARIO DE VENTAS  -->
         <xpath expr="//tree[1]" position="replace">
           <tree string="Purchase Order Lines" editable="bottom">
