@@ -6,11 +6,13 @@ class PurchaseOrder(models.Model):
 	_inherit = "purchase.order"
 
 	compra_tipo = fields.Selection(selection=[('nacional', 'Nacional'),('internacional', 'Internacional')], string="Tipo de compra")
+	prueba = fields.Char(string="Prueba")
 
 class PurchaseOrderLine(models.Model):
 	_inherit = "purchase.order.line"
 
 	imagen_producto = fields.Binary(compute="_get_imagen")
+
 
 	@api.depends('product_id')
 	def _get_imagen(self):

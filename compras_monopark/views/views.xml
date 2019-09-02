@@ -8,11 +8,12 @@
         <!--  AGREGAMOS EL CAMPO TIPO DE COMPRA A LA VISTA DEL FORMULARIO DE VENTAS  -->
         <xpath expr="//field[@name='date_order']" position="after">
           <field name="compra_tipo"/>
+          <field name="prueba"/>
         </xpath>
         <!--  AGREGAMOS LA COLUMNA DE IMAGEN A LA TABLA DE  COMPRAS  -->
         <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='product_id']" position="before">
-          <field name="imagen_producto" options="{&quot;size&quot;: [70, 70]}" widget="image" string="Imagen"/>
-        </xpath>
+              <field name="imagen_producto" options="{&quot;size&quot;: [70, 70]}" widget="image" string="Img"/>
+            </xpath>
         <!--  ELIMINAMOS LA ETIQUETA DESCRIPCION DE LA TABLA DEL FORMULARIO DE VENTAS  -->
         <xpath expr="//tree[1]" position="replace">
           <tree string="Purchase Order Lines" editable="bottom">
@@ -33,6 +34,17 @@
             <field name="taxes_id" widget="many2many_tags" domain="[('type_tax_use','=','purchase')]" context="{'default_type_tax_use': 'purchase', 'search_view_ref': 'account.account_tax_view_search'}" options="{'no_create': True}"/>
             <field name="price_subtotal" widget="monetary"/>
           </tree>
+        </xpath>
+      </field>
+    </record>
+    <!-- AGREGAMOS LA COLUMNA DE IMAGEN EN LA TABLA DE COMPRAS -->
+    <record id="news_fields_purchases" model="ir.ui.view">
+      <field name="name">news.fields.purchases</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='product_id']" position="before">
+          <field name="imagen_producto" options="{&quot;size&quot;: [70, 70]}" widget="image" string="Imagen"/>
         </xpath>
       </field>
     </record>
