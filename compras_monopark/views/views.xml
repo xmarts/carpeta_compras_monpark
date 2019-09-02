@@ -10,10 +10,6 @@
           <field name="compra_tipo"/>
           <field name="prueba"/>
         </xpath>
-        <!--  AGREGAMOS LA COLUMNA DE IMAGEN A LA TABLA DE  COMPRAS  -->
-        <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='product_id']" position="before">
-              <field name="imagen_producto" options="{&quot;size&quot;: [70, 70]}" widget="image" string="Img"/>
-            </xpath>
         <!--  ELIMINAMOS LA ETIQUETA DESCRIPCION DE LA TABLA DEL FORMULARIO DE VENTAS  -->
         <xpath expr="//tree[1]" position="replace">
           <tree string="Purchase Order Lines" editable="bottom">
@@ -38,7 +34,7 @@
       </field>
     </record>
     <!-- AGREGAMOS LA COLUMNA DE IMAGEN EN LA TABLA DE COMPRAS -->
-    <record id="news_fields_purchases" model="ir.ui.view">
+    <record id="news_fields_purchases_2" model="ir.ui.view">
       <field name="name">news.fields.purchases</field>
       <field name="model">purchase.order</field>
       <field name="inherit_id" ref="purchase.purchase_order_form"/>
