@@ -6,7 +6,7 @@ class PurchaseOrder(models.Model):
 	_inherit = "purchase.order"
 
 	compra_tipo = fields.Selection(selection=[('nacional', 'Nacional'),('internacional', 'Internacional')], string="Tipo de compra")
-	prueba = fields.Char(string="Prueba")
+	prueba = fields.Char(string="Referencia interna")
 
 class PurchaseOrderLine(models.Model):
 	_inherit = "purchase.order.line"
