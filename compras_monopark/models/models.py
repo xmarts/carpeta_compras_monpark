@@ -1,12 +1,27 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class PurchaseOrder(models.Model):
 	_inherit = "purchase.order"
 
 	compra_tipo = fields.Selection(selection=[('nacional', 'Nacional'),('internacional', 'Internacional')], string="Tipo de compra")
 	prueba = fields.Char(string="Referencia interna")
+
+	fecha_prevista = fields.Datetime(related="write_date", string="Fecha prevista")
+
+	@api.depends('partner_ref')
+	@api.onchange('partner_ref')
+	def _function_factura(self):
+		for record in self:
+			if record.partner_ref:
+				if record.partner_ref != "":
+					obj_pur_order = self.env['purchase.order'].search([('partner_ref', '=', self.partner_ref)])
+					if obj_pur_order:
+						raise ValidationError('La factura de proveedor ' + self.partner_ref + ' ya esta registrada para el mismo proveedor.')
+						
+
 
 class PurchaseOrderLine(models.Model):
 	_inherit = "purchase.order.line"
