@@ -10,6 +10,7 @@ class PurchaseOrder(models.Model):
 	prueba = fields.Char(string="Referencia interna")
 
 	fecha_prevista = fields.Datetime(related="write_date", string="Fecha prevista")
+	name = fields.Char('Pedir referencia', required=True, index=True, copy=False, default='Nuevo')
 
 	@api.depends('partner_ref')
 	@api.onchange('partner_ref')

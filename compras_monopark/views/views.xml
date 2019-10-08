@@ -10,8 +10,7 @@
               <span class="o_form_label" attrs="{'invisible': [('state','not in',('draft','sent'))]}">Solicitud de presupuesto</span>
               <span class="o_form_label" attrs="{'invisible': [('state','in',('draft','sent'))]}">Orden de compra</span>
               <h1>
-                  <span>Nuevo</span>
-                  <!--<field name="name" readonly="1"/>-->
+                <field name="name" readonly="1"/>
               </h1>
           </div>
         </xpath>
