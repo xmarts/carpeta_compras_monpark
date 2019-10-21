@@ -18,6 +18,11 @@
         <xpath expr="//field[@name='date_order']" position="after">
           <field name="compra_tipo"/>
           <field name="prueba"/>
+
+          <!--CAMBIOS DE 201019-->
+          <field name="desea_ref_banco"/>
+          <field name="ref_banco" attrs="{'invisible':[('desea_ref_banco', '=', False)]}"/>
+
         </xpath>
         <!-- Cambiamos la etiqueta referencia del proveedor por la factura de proveedor -->
         <xpath expr="//field[@name='partner_ref']" position="attributes">

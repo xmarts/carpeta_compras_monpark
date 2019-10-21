@@ -9,6 +9,10 @@ class PurchaseOrder(models.Model):
 	compra_tipo = fields.Selection(selection=[('nacional', 'Nacional'),('internacional', 'Internacional')], string="Tipo de compra")
 	prueba = fields.Char(string="Referencia interna")
 
+	#CAMBIOS DEL 201019
+	desea_ref_banco = fields.Boolean(string="Desea agregar la referencia del banco", default=False)
+	ref_banco = fields.Char(string="Referencia del banco")
+
 	fecha_prevista = fields.Datetime(related="write_date", string="Fecha prevista")
 	name = fields.Char('Pedir referencia', required=True, index=True, copy=False, default='Nuevo')
 
