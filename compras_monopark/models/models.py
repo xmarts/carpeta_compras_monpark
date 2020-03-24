@@ -39,3 +39,14 @@ class PurchaseOrderLine(models.Model):
 		for line in self:
 			if line.product_id:
 				line.imagen_producto = line.product_id.image_medium
+
+class AccountIncoterms(models.Model):
+	_inherit  = 'account.incoterms'
+
+	@api.multi
+	def name_get(self):
+		result = []
+		for record in self:
+			record_name = str(record.code)
+			result.append((record.id, record_name))
+		return result
