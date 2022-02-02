@@ -8,15 +8,11 @@ class PurchaseOrder(models.Model):
 
 	compra_tipo = fields.Selection(selection=[('nacional', 'Nacional'),('internacional', 'Internacional')], string="Tipo de compra")
 	prueba = fields.Char(string="Referencia interna")
-
-	#CAMBIOS DEL 201019
 	desea_ref_banco = fields.Boolean(string="Desea agregar la referencia del banco", default=False)
 	ref_banco = fields.Char(string="Referencia del banco")
-
 	fecha_prevista = fields.Datetime(related="write_date", string="Fecha prevista")
 	name = fields.Char('Pedir referencia', required=True, index=True, copy=False, default='Nuevo')
 
-	@api.depends('partner_ref')
 	@api.onchange('partner_ref')
 	def _function_factura(self):
 		for record in self:
@@ -33,7 +29,6 @@ class PurchaseOrderLine(models.Model):
 
 	imagen_producto = fields.Binary(compute="_get_imagen")
 
-
 	@api.depends('product_id')
 	def _get_imagen(self):
 		for line in self:
@@ -43,7 +38,7 @@ class PurchaseOrderLine(models.Model):
 class AccountIncoterms(models.Model):
 	_inherit  = 'account.incoterms'
 
-	@api.multi
+	@api.model
 	def name_get(self):
 		result = []
 		for record in self:
