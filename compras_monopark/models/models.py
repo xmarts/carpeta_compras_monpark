@@ -29,11 +29,11 @@ class PurchaseOrderLine(models.Model):
 
 	imagen_producto = fields.Binary(compute="_get_imagen")
 
-	@api.depends('product_id')
+	@api.onchange('product_id')
 	def _get_imagen(self):
 		for line in self:
 			if line.product_id:
-				line.imagen_producto = line.product_id.image_medium
+				line.imagen_producto = line.product_id.image_512
 
 class AccountIncoterms(models.Model):
 	_inherit  = 'account.incoterms'
