@@ -34,6 +34,8 @@ class PurchaseOrderLine(models.Model):
 		for line in self:
 			if line.product_id:
 				line.imagen_producto = line.product_id.image_512
+			else:
+				line.imagen_producto = False
 
 class AccountIncoterms(models.Model):
 	_inherit  = 'account.incoterms'
